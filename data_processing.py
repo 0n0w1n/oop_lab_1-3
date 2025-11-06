@@ -95,3 +95,4 @@ for i in [x["city"] for x in Filtering(lambda x: x["country"] == 'Italy', cities
             temp_italy.append(float(j["temperature"]))
 print("the max temperature for all the cities in Italy:")
 print(max(temp_italy))
+
