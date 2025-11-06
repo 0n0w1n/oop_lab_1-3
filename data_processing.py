@@ -64,35 +64,22 @@ print()
 # Count the number of unique countries
 
 print("the number of unique countries")
-count = 0
-for i in cities:
-    country = []
-    country.append(i["country"])
-for i in country:
-    if country.count(i) == 1:
-        count += 1
-print(count)
+unique = aggregate("country",set,cities)
+print(len(unique))
 print()
 
 # Print the average temperature for all the cities in Germany
 
-temperature = []
-for i in [x["city"] for x in germany_cities]:
-    for j in cities:
-        if j["city"] == i:
-            temperature.append(float(j["temperature"]))
-print("the average temperature for all the cities in Germany:")
-print(sum(temperature)/len(temperature))
+print("the average temperature for all the cities in Germany")
+temp_germany = aggregate("temperature",lambda x: x,germany_cities)
+print(sum(temp_germany)/len(temp_germany))
 print()
 
 
 # Print the max temperature for all the cities in Italy
 
-temp_italy = []
-for i in [x["city"] for x in Filtering(lambda x: x["country"] == 'Italy', cities)]:
-    for j in cities:
-        if j["city"] == i:
-            temp_italy.append(float(j["temperature"]))
-print("the max temperature for all the cities in Italy:")
-print(max(temp_italy))
-
+print("the max temperature for all the cities in Italy")
+italy_cities = Filtering(lambda x: x["country"] == 'Italy', cities)
+temp_italy = aggregate("temperature",max,italy_cities)
+print(temp_italy)
+print()
